@@ -1,80 +1,63 @@
 using System;
 
-public class Journal {
-    public string _prompts;
-    public string _entry;
-    public int _dateText;
-    public string _mood;
-public List <Journal> _entries;
-public PromptGenerator promptGenerator;
-
-    
-    public Journal() {
-        _entries = new List<Journal>();
-        promptGenerator = new PromptGenerator();
-    }
-
-    
-    public void AddEntry() {
-    
-        string _prompts = promptGenerator.GenerateRandomPrompt();
-
-        Console.WriteLine($"{_prompts}");
-        Console.Write("> ");
-        string _entries = Console.ReadLine();
-        Console.WriteLine("What was your mood today?");
-        string _mood = Console.ReadLine();
-        DateTime theCurrentTime = DateTime.Now;
-        int _dateText = int.Parse (theCurrentTime.ToShortDateString());
-
-    }
-
-    public void DisplayEntries() {
-        foreach (Journal entry in _entries) {
-            entry.DisplayEntries();
-        }
-    }
+public class Journal
+{
+    public List<Entry> _entries;
 
 
-    public static void SaveToFile(List<Journal>journalEntries)
+    public Journal()
     {
-        List<Journal>_entries = new List<Journal>();
-        string fileName = Console.ReadLine();
-        Console.WriteLine ("Saving to file....");
-        using (StreamWriter Outputfile = new StreamWriter(filename));
-        }
-            foreach (Journal _entries in journalEntries);
-            {
-                ouputfile.WriteLine($"{_entries._prompts}~~{_entries.dateText}~~{_entries.Content}~~{entries._mood}");
-            }
-        }
+        _entries = new List<Entry>();
     }
-    public static List<Journal> ReadFromFile();
+
+
+    public void AddEntry()
     {
-        List<Journal>_entries = new List<Journal>();
-        string fileName = Console.ReadLine();
-        Console.WriteLine ("Reading from file....");
-        foreach (Journal _entries in journalEntries);
+        Entry entry = new();
+        entry.Write();
+        _entries.Add(entry);
+    }
+
+    public void DisplayEntries()
+    {
+        foreach (Entry entry in _entries)
         {
-            string[] lines =System.IO.File.ReadAllLines(fileName);
-            foreach (string line in lines)
-            {
-                string[] parts = line.Split("~~");
-                Console.WriteLine(line);
-
-                Journal newJournal = new Journal();
-                newJournal._nPrompts = parts[0];
-                newJournal.nDate = parts[1];
-                newJournal._nEntry = parts[2];
-                newJournal.nMood = parts[3];
-                Journal.Add(newJournal);
-            }
-
+            entry.Display();
         }
-
-        return _entries;
-
     }
 
 
+    public void SaveToFile()
+    {
+        Console.WriteLine("Enter the file name:");
+        string fileName = Console.ReadLine();
+        Console.WriteLine("Saving to file....");
+        using (StreamWriter Outputfile = new(fileName, true))
+        {
+            foreach (Entry entry in _entries)
+            {
+                Outputfile.WriteLine($"{entry._prompt}~~{entry._response}~~{entry._dateText}~~{entry._mood}");
+            }
+        }
+    }
+
+
+    public void ReadFromFile()
+    {
+        Console.WriteLine("Enter file name:");
+        string fileName = Console.ReadLine();
+        Console.WriteLine("Reading from file....");
+        string[] lines = File.ReadAllLines(fileName);
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("~~");
+            //Console.WriteLine(line);
+            string prompt = parts[0];
+            string response = parts[1];
+            string date = parts[2];
+            string mood = parts[3];
+            Entry entry = new Entry(prompt, response, date, mood);
+            _entries.Add(entry);
+        }
+    }
 }
