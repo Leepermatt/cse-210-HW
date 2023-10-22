@@ -4,6 +4,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop03 World!");
+        do
+        {
+            Scripture.Display();
+            Console.WriteLine ("Press enter to continue, quit to exit.");
+            string input = Console.ReadLine().ToLower();
+            if (input == 'quit')
+            {
+                break;
+            }
+            else Scripture.hideWord()
+            {
+
+            }
+    
+
+        } while 
     }
 }
