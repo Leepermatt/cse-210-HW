@@ -18,6 +18,10 @@ using System;
     {
         return _activity;
     }
+    public string BreathingWelcome()
+    {
+        return $"{WelcomeMessage()} {GetWelcome()} ";
+    }
     public void BreathingPrompt()
     {
             {

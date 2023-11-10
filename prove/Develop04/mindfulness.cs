@@ -13,12 +13,12 @@ public class Mindfulness
     {
         return _time;
     }
-    public void WelcomeMessage()
+    public string WelcomeMessage()
     {
-        Console.WriteLine ($"Welcome to the {_activity}");
-        Console.WriteLine ($"This activity will help you relax by {GetWelcome()} ");
-        Console.WriteLine ("How Long would (in seconds), would you like to do this for?");
-        _time = int.Parse(Console.ReadLine());
+        return $"Welcome to the {_activity}";
+        // Console.WriteLine ($"This activity will help you relax by {GetWelcome()} ");
+        // Console.WriteLine ("How Long would (in seconds), would you like to do this for?");
+        // _time = int.Parse(Console.ReadLine());
         
     }
 

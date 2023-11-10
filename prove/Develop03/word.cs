@@ -1,36 +1,36 @@
 using System;
 public class Word
-{    
-    static Random rand = new Random();
-    private string _words;
-    private string _book;
-    private string _chaper;
-    private string _verse;
-    static void HideWord()
-    {
-    while (true)
-       { 
-         Console.WriteLine(_words);
-         string[] words = _words.Split(' ');
-         int numWords = words.Length;
-         bool delay = true;
-
-         for(int i = 1; i <= numWords; i++)
-         {
-            
-            int randNum = rand.Next(0, numWords);
-            string randWord = words[randNum];
-
-            if (randWord[0] != '_')
-            {
-               words[randNum] = new string('_', randWord.Length);
-               Console.WriteLine(String.Join(" ", words));
-               
-            }
-            else
-            {
-
-            } 
-    }
+{     
+   private string _word;
+   private bool _hidden;
+   public Word(string text)
+   {
+      _word = text;
+      _hidden = false;
+   }
+   public string GetWord()
+   {
+      return _word;
+   }
+   public void SetWord(string text)
+   {
+      _word = text;
+   }
+   public void Hide()
+   {
+      _hidden = true;
+      Console.WriteLine(_word);
+   }
+   public void Show()
+   {
+      _hidden = false;
+   }
+   public bool IsHiddenWord()
+   {
+      return _hidden;
+   }
+   public string GetText()
+   {
+      return _hidden ? new string('_', _word.Length) : _word;
+   }   
 }
-

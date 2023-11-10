@@ -22,6 +22,7 @@ class Program
                     mindfulness.WelcomeMessage();
                     mindfulness.Spinner();
                     mindfulness.CountDown();
+                    // Console.Write.Breathing.BreathingWelcome();
                     // mindfulness.BreathingPrompt();
                     mindfulness.WellDone();
                     break;
