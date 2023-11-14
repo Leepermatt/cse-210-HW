@@ -1,58 +1,24 @@
 using System;
-
-
- public class Breathing : Mindfulness
- {
-    private string  _activity = "Breathing Activity";
-    private string _welcomePrompt ="walking you through breathing in and out slowly. Clear your mind and focus on your breathing";
-    // 
-    public string GetWelcome()
+public class Breathing : Mindfulness
+{
+    public Breathing(int time) : base(time)
     {
-        return _welcomePrompt;
+        _activity = "Breathing Activity";
+        _description = "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing";
     }
-    public void SetWelcome(string activity)
+    public void RunBreathingActivity()
     {
-        _activity = activity;
-    }
-    public string GetActivity()
-    {
-        return _activity;
-    }
-    public string BreathingWelcome()
-    {
-        return $"{WelcomeMessage()} {GetWelcome()} ";
-    }
-    public void BreathingPrompt()
-    {
-            {
-        
-        List<string> animationStrings = new List<string>();
-        animationStrings.Add("Breath in...");
-        animationStrings.Add("Breath out...");
-
-
-        // foreach (string s in animationStrings)
-        // {
-        //     Console.Write(s);
-        //     Thread.Sleep(500);
-        //     Console.Write("\b \b");
-        // }
-    DateTime startTime = DateTime.Now;
-    DateTime endTime = startTime.AddSeconds(GetTime());
-    int i = 0;
-    while (DateTime.Now < endTime)
-    {
-        string s = animationStrings[i];
-        Console.Write(s);
-        Thread.Sleep(5000);
-        // Console.Write("\b \b");
-        i++;
-        if (i>= animationStrings.Count)
+        WelcomeMessage();
+        DateTime endTime = DateTime.Now.AddSeconds(_time);
+        while (DateTime.Now < endTime)
         {
-            i = 0;
+            // PUT "Breath in..."
+            Console.WriteLine("Breath in ...");
+            CountDown(5);
+            // PUT Breath out...
+            Console.WriteLine("Breath out...");
+            CountDown(5);
         }
+        EndMessage();
     }
-    }
-        
-    }
- }
+}

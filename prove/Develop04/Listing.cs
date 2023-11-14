@@ -1,31 +1,41 @@
 using System;
 public class Listing : Mindfulness
 {
-    private string _activity = "Listing Activity";
-    private string _welcomePrompt =" on the good things in your life by having you list as many things as you can in a certain area.";
+    public Listing(int time) : base(time)
+    {
+        _activity = "Listing Activity";
+        _description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area";
+    }
+    private List<string> listingList = new()
+    {
+        "Who are people that you appreciate?", "What are personal strengths of yours?", "Who are people that you have helped this week?", "When have you felt the Holy Ghost this month?", "Who are some of your personal heroes?"
+    };
+    private List<string> log = new();
     public void ListingList()
     {
-        List<string> listingList = new List<string>();
-        listingList.Add("Who are people that you appreciate?");
-        listingList.Add("What are personal strengths of yours?");
-        listingList.Add("Who are people that you have helped this week?");
-        listingList.Add("When have you felt the Holy Ghost this month?");
-        listingList.Add("Who are some of your personal heroes?");
         Random rnd = new Random();
         string d = listingList[rnd.Next(listingList.Count)];
-        Console.WriteLine("List as many responses as you can to the following Prompt:");
-        Console.WriteLine($"----{d}----");
+        Console.WriteLine(d);
     }
-    public void InputList()
+    public void RunListingActivity()
     {
-
+        WelcomeMessage();
+        Console.WriteLine("List as many responses as you can to the following Prompt:");
+        ListingList();
+        Spinner(10);
+        DateTime endTime = DateTime.Now.AddSeconds(_time);
+        while (DateTime.Now < endTime)
+        {
+            Console.ReadLine();
+        }
+        EndMessage();
     }
     public string GetListingActivity()
     {
          return _activity;
     }
-    public string GetListingWelcome()
+    public void SetListingActivity(string activity)
     {
-        return _welcomePrompt;
+        _activity = activity;
     }
 }

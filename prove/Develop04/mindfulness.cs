@@ -2,81 +2,50 @@ using System;
 using System.Runtime.InteropServices.Marshalling;
 public class Mindfulness
 {
-    private string _activity;
-    
-    private string _endingMessage;
-    private string _wellDone;
-    private int _time;
-    private int _timeActivity;
-  
-    public int GetTime()
+    protected string _activity;
+    protected string _description;
+    protected int _time;
+    private List<string> animationStrings = new()
     {
-        return _time;
-    }
-    public string WelcomeMessage()
+        "|", "/", "-", "\\"
+    };
+    public Mindfulness(int time)
     {
-        return $"Welcome to the {_activity}";
-        // Console.WriteLine ($"This activity will help you relax by {GetWelcome()} ");
-        // Console.WriteLine ("How Long would (in seconds), would you like to do this for?");
-        // _time = int.Parse(Console.ReadLine());
-        
+        _time = time;
     }
-
-    private object GetWelcome()
+    public void WelcomeMessage()
     {
-        return $"{_activity}";
+        Console.WriteLine($"Welcome to the {_activity}");
+        Console.WriteLine(_description);
+        Console.WriteLine("Get Ready...");
+        Spinner(5);
     }
-
-    public string WellDone()
+    public void EndMessage()
     {
         Console.WriteLine("Well done!");
-        Spinner();
-        return $"You have completed {GetTime()} seconds of {_activity}";
+        Spinner(5);
+        Console.WriteLine($"You have completed {_time} seconds of {_activity}");
     }
-    public void Spinner()
+    public void Spinner(int time)
     {
-        Console.WriteLine ("Get Ready...");
-        List<string> animationStrings = new List<string>();
-        animationStrings.Add("|");
-        animationStrings.Add("/");
-        animationStrings.Add("-");
-        animationStrings.Add("\\");
-        animationStrings.Add("|");
-        animationStrings.Add("/");
-        animationStrings.Add("-");
-        animationStrings.Add("\\");
-        // foreach (string s in animationStrings)
-        // {
-        //     Console.Write(s);
-        //     Thread.Sleep(500);
-        //     Console.Write("\b \b");
-        // }
-    DateTime startTime = DateTime.Now;
-    DateTime endTime = startTime.AddSeconds(5);
-    int i = 0;
-    while (DateTime.Now < endTime)
-    {
-        string s = animationStrings[i];
-        Console.Write(s);
-        Thread.Sleep(1000);
-        Console.Write("\b \b");
-        i++;
-        if (i>= animationStrings.Count)
+        DateTime endTime = DateTime.Now.AddSeconds(time);
+        while (DateTime.Now < endTime)
         {
-            i = 0;
+            foreach (string s in animationStrings)
+            {
+                Console.Write(s);
+                Thread.Sleep(250);
+                Console.Write("\b \b");
+            }
         }
     }
-    }
-    public void CountDown()
+    public void CountDown(int time)
     {
-        for (int i = 5; i > 0; i--)
+        for (int i = time; i > 0; i--)
         {
             Console.Write(i);
             Thread.Sleep(1000);
-            Console.Write("\b");
-            
+            Console.Write("\b \b");  
         }
-        Console.Write("Go:");
     }
-
 }
