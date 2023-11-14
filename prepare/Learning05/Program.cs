@@ -8,6 +8,10 @@ class Program
         
         Square s1 = new Square("white", 5);
         shapes.Add(s1);
+        Rectangle r1 = new Rectangle("blue", 5, 4);
+        shapes.Add(r1);
+        Circle c1 = new Circle("orange", 3);
+        shapes.Add(c1);
         foreach (Shape s in shapes)
         {
             string color = s.GetColor();
