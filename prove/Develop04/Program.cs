@@ -1,10 +1,10 @@
 using System;
-
+// write file to activitylog text file as extra credit.
 class Program
 {
     static void Main(string[] args)
     {
-        int userInput = 0;
+        int userInput;
         while (true)
         {
             Console.WriteLine("Menu Options:");
@@ -24,14 +24,14 @@ class Program
                     break;
                 case 2:
                     Console.WriteLine ("How Long would (in seconds), would you like to do this for?");
-                    int rTime = int.Parse(Console.ReadLine());
-                    Reflecting reflecting = new(rTime);
+                    time = int.Parse(Console.ReadLine());
+                    Reflecting reflecting = new(time);
                     reflecting.RunReflectingActifvity();
                     break;
                 case 3:
                     Console.WriteLine ("How Long would (in seconds), would you like to do this for?");
-                    int lTime = int.Parse(Console.ReadLine());
-                    Listing listing = new(lTime);
+                    time = int.Parse(Console.ReadLine());
+                    Listing listing = new(time);
                     listing.RunListingActivity();          
                     break;
                 case 4:

@@ -12,10 +12,8 @@ public class Breathing : Mindfulness
         DateTime endTime = DateTime.Now.AddSeconds(_time);
         while (DateTime.Now < endTime)
         {
-            // PUT "Breath in..."
             Console.WriteLine("Breath in ...");
             CountDown(5);
-            // PUT Breath out...
             Console.WriteLine("Breath out...");
             CountDown(5);
         }

@@ -5,6 +5,7 @@ public class Mindfulness
     protected string _activity;
     protected string _description;
     protected int _time;
+    private List<string> response = new();
     private List<string> animationStrings = new()
     {
         "|", "/", "-", "\\"
@@ -47,5 +48,13 @@ public class Mindfulness
             Thread.Sleep(1000);
             Console.Write("\b \b");  
         }
+    }
+    public void SaveToFile()
+    {
+        using (StreamWriter Outputfile = new StreamWriter("activityLog.txt"))
+            foreach (string line in response)
+            {
+                Outputfile.WriteLine(line);                
+            }
     }
 }
