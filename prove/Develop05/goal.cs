@@ -1,43 +1,59 @@
 using System;
-public class Goals
-{   
-    protected int _points;
-    protected string _cGoal;
-    public Goals(int points)
+using System.Diagnostics.CodeAnalysis;
+public abstract class Goals
+{
+    protected int _totalPointsEarned = 0;
+    protected int _pointsCompletion = 0;
+    protected string _description;
+    protected string _name;
+    protected bool _completed = false;
+    public Goals()
     {
-        _points = points;
+        Console.WriteLine($"What is the name of your {GetGoalName()}?");
+        _name = Console.ReadLine();
+        Console.WriteLine($"What is the description of your {GetGoalName()}?");
+        _description = Console.ReadLine();
+        Console.WriteLine($"How many points is it worth?");
+        _pointsCompletion = int.Parse(Console.ReadLine());
     }
-    public void GoalChoice(int points)
+    public Goals(StreamReader read)
     {
-        int goalChoice = 0;
-        while (true)
-        {
-            Console.WriteLine("The types of Goals are:");
-            Console.WriteLine("1. Simple Goal");
-            Console.WriteLine("2. Eternal Goal");
-            Console.WriteLine("3. Checklist Goal");
-            goalChoice = int.Parse(Console.ReadLine());
-            switch (goalChoice)
-            {
-                case 1:
-                    Console.Write("What is a short description of it?");
-                    // string cGoal = Console.Read();
-                    // Console.WriteLine;
-                    break;
+        _name = read.ReadLine();
+        _description = read.ReadLine();
+        _pointsCompletion = int.Parse(read.ReadLine());
+        _completed = bool.Parse(read.ReadLine());
+        _totalPointsEarned = int.Parse(read.ReadLine());
+    }
+    public string GetName()
+    {
+        return _name;
+    }
+    public int GetPointsEarned()
+    {
+        return _totalPointsEarned;
+    }
 
-                case 2:
-
-                    break;
-
-                case 3:
-
-                    break;
-                default:
-                    Console.WriteLine("Invalid input");
-                    break;
-
-                
-            }
-        }
+    public bool GetCompleted()
+    {
+        return _completed;
+    }
+    public string CompleteCheckbox()
+    {
+        return _completed ? "[X]" : "[]";
+    }
+    public virtual string GetCompletedDisplay()
+    {
+        return $"{CompleteCheckbox()} {_name} ({_description})";
+    }
+    public abstract void Complete();
+    protected abstract string GetGoalName();
+    protected abstract string GetGoalComplete();
+    public virtual void WritetoStreamWriter(StreamWriter w)
+    {
+        w.WriteLine(_name);
+        w.WriteLine(_description);
+        w.WriteLine(_pointsCompletion);
+        w.WriteLine(_completed);
+        w.WriteLine(_totalPointsEarned);
     }
 }
