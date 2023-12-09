@@ -1,31 +1,75 @@
 public class Order
 {
-    protected int _shippingFee;
-    protected Address _address;
-    protected Address _country;
-    protected Customer _name;
-    protected int _shippingFee;
-
-        public void CheckAdress()
+    protected double _shippingFee =5;
+    protected double _totalPrice;
+    // private string item;
+    protected Address address;
+    protected Address country;
+    protected Customer name;
+    protected Product productName;
+    protected Product productId;
+    // public List<Product> items = new List<Product>();
+    public Order()
     {
-        string _country = "USA";
+        //ShippingLabel();
+        //GetShippingFee();
+    }
+    public void DisplayOrder(double totalPrice)
+    {
+        ShippingLabel();
+        Console.WriteLine($"The order total is{totalPrice}");
+
+    }
+
+    public double GetShippingFee()
+    {
+        return _shippingFee;
+    }
+    public void SetShippingFee(int shippingFee)
+    {
+        _shippingFee = shippingFee;
+    }
+    public double GetTotalPrice()
+    {
+        return _totalPrice;
+    }
+    public void SetTotalPrice(int totalPrice)
+    {
+        _totalPrice = totalPrice;
+    }
+    public void CheckAdress(int shippingFee)
+    {
+        string country = "USA";
         Boolean parsedValue;
 
-        if (Boolean.TryParse(_country, out parsedValue))
+        if (Boolean.TryParse(country, out parsedValue))
         {
             if (parsedValue)
             {
-                int _shippingFee = 5;
+                shippingFee = 5;
             }
             else
             {
-                int _shippingFee = 35;
+                shippingFee = 35;
             }
         }
         else
         {
             Console.WriteLine("Invalid country");
         }
+    }
+    public int TotalPrice(int total, int shippingFee)
+    {
+        int totalPrice = total + shippingFee;
+        return totalPrice;
 
+    }
+    public string ShippingLabel()
+    {
+        return $"Name: {name}. Address: {address}";
+    }
+    public void PackingLabel()
+    {
+        Console.WriteLine($"product: {productName} productID {productId}");
     }
 }
