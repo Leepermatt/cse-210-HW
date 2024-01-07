@@ -13,8 +13,8 @@ public class Customer
     {
         _name = name;
     }
-    public string GetCustomer(string name, string address)
+    public string GetCustomer(string name)
     {
-        return $"name: {name} address: {address} ";
+        return $"name: {name} ";
     }
 }

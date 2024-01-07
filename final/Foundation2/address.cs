@@ -45,9 +45,9 @@ public class Address
     {
         _address = address;
     }
-    public string GenAddress(string street, string city, string state, string country)
+    public void GenAddress(string street, string city, string state, string country)
     {
-        string address = $"{street}, {city}, {state} {country}";
-        return address;
+        //string address = $"{street}, {city}, {state} {country}";
+        Console.WriteLine( $"{street}, {city}, {state} {country}");
     }
 }

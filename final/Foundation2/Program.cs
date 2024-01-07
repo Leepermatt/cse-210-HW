@@ -22,6 +22,10 @@ class Program
         //Order o1 = new Order.Add.c1
         
         p1.PackingLabel();
-        //DisplayOrder()
+        c1.GetCustomer("John Hopkins");
+        Console.WriteLine(a1);
+        a1.GenAddress("234 Main", "Las Vegas", "NV", "USA");
+        
+        
     }
 }
